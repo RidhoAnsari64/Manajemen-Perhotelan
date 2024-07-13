@@ -8,11 +8,26 @@ int pil;
 void checkin()
 {
     string nama;
-    int telepon;
+    int telepon, kamar;
     cout << "Masukkan nama Anda = ";
     cin >> nama;
     cout << "Masukkan nomor telepon Anda = ";
     cin >> telepon;
+    system("cls");
+    cout << "Pilih jenis kamar Anda" << endl;
+    cout << "1. Standar" << endl;
+    cout << "2. VIP" << endl;
+    cout << "Masukkan pilihan Anda = ";
+    cin >> kamar;
+    switch (kamar)
+    {
+        case 1:
+        cout << "Anda telah memilih kamar Standar.";
+        break;
+        case 2:
+        cout << "Anda telah memilih kamar VIP.";
+        break;
+    }
 }
 
 int main()

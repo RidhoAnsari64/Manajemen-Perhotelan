@@ -4,12 +4,26 @@
 using namespace std;
 
 int pil;
+const int MAX_KAMAR = 20;
+const int MAX_TAMU = 20;
 
-void checkin()
+struct Tamu {
+    string nama;
+    int telepon, kamar, tamu;
+};
+
+struct Kamar {
+    int NomorKamar;
+    bool Tersedia;
+    Tamu tamu;
+};
+
+void DataTamu(Tamu tamu1[], Kamar kamar1[])
 {
     string nama;
-    int telepon, kamar;
+    int telepon, kamar, tamu;
     cout << "Masukkan nama Anda = ";
+    cin.ignore();
     cin >> nama;
     cout << "Masukkan nomor telepon Anda = ";
     cin >> telepon;
@@ -28,10 +42,25 @@ void checkin()
         cout << "Anda telah memilih kamar VIP.";
         break;
     }
-}
+    system("cls");
+    cout << "Masukkan jumlah tamu = ";
+    cin >> tamu;
+    cout << "Tamu Berhasil Ditambahkan!\n" << endl;
+};
+
+void DataKamar()
+{
+
+};
 
 int main()
 {
+    Tamu tamu1[MAX_TAMU];
+    Kamar kamar1[MAX_KAMAR];
+    int tamu = 0;
+    int jumlahKamar = MAX_KAMAR;
+
+    do {
     cout << "============== Selamat Datang di Hotel RR ===================" << endl;
     cout << "Apakah Anda ingin check in atau check out?" << endl;
     cout << "1. Check in." << endl;
@@ -42,7 +71,10 @@ int main()
     switch (pil)
     {
         case 1:
-        checkin();
+        DataTamu(tamu1, kamar1);
         break;
     }
+    }while (pil != 3);
+
+    return 0;
 }

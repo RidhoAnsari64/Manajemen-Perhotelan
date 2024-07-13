@@ -43,14 +43,30 @@ void DataTamu(Tamu tamu1[], Kamar kamar1[])
         break;
     }
     system("cls");
-    cout << "Masukkan jumlah tamu = ";
-    cin >> tamu;
     cout << "Tamu Berhasil Ditambahkan!\n" << endl;
 };
 
-void DataKamar()
+void DataKamar(Kamar kamar1[], int JumlahKamar)
 {
+    int NomorKamar;
+    cout << "Masukkan nomor kamar untuk mencek = ";
+    cin >> NomorKamar;
 
+    if (NomorKamar < 1 || NomorKamar > JumlahKamar)
+    {
+        cout << "Nomor kamar tidak tersedia." << endl;
+        return;
+    }
+
+    Kamar kamar = kamar1[NomorKamar - 1];
+    cout << "Nomor Kamar = " << kamar.NomorKamar << endl;
+    cout << "Status Kamar = " << (kamar.Tersedia ? "Tersedia" : "Telah Terisi") << endl;
+    if (!kamar.Tersedia) 
+    {
+        cout << "Nama Tamu = " << kamar.tamu.nama << endl;
+        cout << "Nomor Telepon Tamu = " << kamar.tamu.telepon << endl;
+        return;
+    }
 };
 
 int main()
@@ -58,13 +74,12 @@ int main()
     Tamu tamu1[MAX_TAMU];
     Kamar kamar1[MAX_KAMAR];
     int tamu = 0;
-    int jumlahKamar = MAX_KAMAR;
+    int JumlahKamar = MAX_KAMAR;
 
     do {
     cout << "============== Selamat Datang di Hotel RR ===================" << endl;
-    cout << "Apakah Anda ingin check in atau check out?" << endl;
-    cout << "1. Check in." << endl;
-    cout << "2. Check out." << endl;
+    cout << "1. Data Tamu." << endl;
+    cout << "2. Data Kamar." << endl;
     cout << "Masukkan pilihan Anda = ";
     cin >> pil;
     system ("cls");
@@ -73,6 +88,14 @@ int main()
         case 1:
         DataTamu(tamu1, kamar1);
         break;
+        case 2:
+        DataKamar(kamar1, JumlahKamar);
+        break;
+        case 3:
+        cout << "Keluaran dari program." << endl;
+        break;
+        default:
+        cout << "Pilihan yang salah. Mohon untuk memilih sesuai data di atas.\n" << endl;
     }
     }while (pil != 3);
 

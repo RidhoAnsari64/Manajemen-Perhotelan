@@ -7,9 +7,12 @@ int pil;
 
 void checkin()
 {
-    int nama, telepon;
+    string nama;
+    int telepon;
     cout << "Masukkan nama Anda = ";
     cin >> nama;
+    cout << "Masukkan nomor telepon Anda = ";
+    cin >> telepon;
 }
 
 int main()

@@ -8,8 +8,8 @@ const int MAX_KAMAR = 20;
 const int MAX_TAMU = 20;
 
 struct Tamu {
-    string nama;
-    int telepon, kamar, tamu;
+    string nama, telepon, JenisKamar;
+    int NomorKamar;
 };
 
 struct Kamar {
@@ -18,31 +18,39 @@ struct Kamar {
     Tamu tamu;
 };
 
-void DataTamu(Tamu tamu1[], Kamar kamar1[])
+void DataTamu(Tamu tamu1[], Kamar kamar1[], int &JumlahTamu)
 {
-    string nama;
-    int telepon, kamar, tamu;
+        if (JumlahTamu >= MAX_TAMU)
+    {
+        cout << "Batas maksimum tamu telah tercapai!" << endl;
+        return;
+    }
+
+    string nama, telepon, JenisKamar;
+    int NomorKamar;
     cout << "Masukkan nama Anda = ";
     cin.ignore();
-    cin >> nama;
+    getline(cin, nama);
     cout << "Masukkan nomor telepon Anda = ";
-    cin >> telepon;
-    system("cls");
+    getline(cin, telepon);
     cout << "Pilih jenis kamar Anda" << endl;
     cout << "1. Standar" << endl;
     cout << "2. VIP" << endl;
-    cout << "Masukkan pilihan Anda = ";
-    cin >> kamar;
-    switch (kamar)
-    {
-        case 1:
-        cout << "Anda telah memilih kamar Standar.";
-        break;
-        case 2:
-        cout << "Anda telah memilih kamar VIP.";
-        break;
-    }
+    cout << "Masukkan Jenis Kamar = ";
+    getline(cin, JenisKamar);
+    cout << "Masukkan Nomor Kamar = ";
+    cin >> NomorKamar;
     system("cls");
+
+    if (NomorKamar < 1 || NomorKamar > MAX_KAMAR || !kamar1[NomorKamar - 1].Tersedia)
+    {
+        cout << "Kamar Telah Terisi!\n" << endl;
+        return;
+    }
+
+    tamu1[JumlahTamu] = {nama, telepon, JenisKamar, NomorKamar};
+    kamar1[NomorKamar - 1].Tersedia = false;
+    kamar1[NomorKamar - 1].tamu = tamu1[JumlahTamu];
     cout << "Tamu Berhasil Ditambahkan!\n" << endl;
 };
 
@@ -65,34 +73,43 @@ void DataKamar(Kamar kamar1[], int JumlahKamar)
     {
         cout << "Nama Tamu = " << kamar.tamu.nama << endl;
         cout << "Nomor Telepon Tamu = " << kamar.tamu.telepon << endl;
+        cout << "Jenis Kamar = " << kamar.tamu.JenisKamar << endl;
         return;
     }
+    cout << endl;
 };
 
 int main()
 {
     Tamu tamu1[MAX_TAMU];
     Kamar kamar1[MAX_KAMAR];
-    int tamu = 0;
+    int JumlahTamu = 0;
     int JumlahKamar = MAX_KAMAR;
+
+    for (int i = 0; i < JumlahKamar; ++i)
+    {
+        kamar1[i].NomorKamar = i + 1;
+        kamar1[i].Tersedia = true;
+    }
 
     do {
     cout << "============== Selamat Datang di Hotel RR ===================" << endl;
     cout << "1. Data Tamu." << endl;
     cout << "2. Data Kamar." << endl;
+    cout << "3. Exit." << endl;
     cout << "Masukkan pilihan Anda = ";
     cin >> pil;
     system ("cls");
     switch (pil)
     {
         case 1:
-        DataTamu(tamu1, kamar1);
+        DataTamu(tamu1, kamar1, JumlahTamu);
         break;
         case 2:
         DataKamar(kamar1, JumlahKamar);
         break;
         case 3:
-        cout << "Keluaran dari program." << endl;
+        cout << "Keluar dari program." << endl;
         break;
         default:
         cout << "Pilihan yang salah. Mohon untuk memilih sesuai data di atas.\n" << endl;

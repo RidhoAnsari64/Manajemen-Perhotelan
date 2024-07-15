@@ -28,6 +28,7 @@ void DataTamu(Tamu tamu1[], Kamar kamar1[], int &JumlahTamu)
 
     string nama, telepon, JenisKamar;
     int NomorKamar;
+    system("cls");
     cout << "Masukkan nama Anda: ";
     cin.ignore();
     getline(cin, nama);
@@ -53,13 +54,13 @@ void DataTamu(Tamu tamu1[], Kamar kamar1[], int &JumlahTamu)
 
     cout << "Masukkan Nomor Kamar: ";
     cin >> NomorKamar;
-
+    system("cls");
     if (NomorKamar < 1 || NomorKamar > MAX_KAMAR || !kamar1[NomorKamar - 1].Tersedia)
     {
         cout << "Kamar tidak tersedia!" << endl;
         return;
     }
-
+    system("cls");
     tamu1[JumlahTamu] = {nama, telepon, JenisKamar, NomorKamar};
     kamar1[NomorKamar - 1].Tersedia = false;
     kamar1[NomorKamar - 1].tamu = tamu1[JumlahTamu];
@@ -73,11 +74,13 @@ void DataTamu(Tamu tamu1[], Kamar kamar1[], int &JumlahTamu)
     cout << "Tekan tombol sembarang untuk kembali ke menu utama...";
     cin.ignore(); 
     cin.get();
+    system("cls");
 }
 
 void DataKamar(Kamar kamar1[], int JumlahKamar)
 {
     int NomorKamar;
+    system("cls");
     cout << "Masukkan nomor kamar untuk mengecek: ";
     cin >> NomorKamar;
 
@@ -96,6 +99,10 @@ void DataKamar(Kamar kamar1[], int JumlahKamar)
         cout << "Nomor Telepon Tamu: " << kamar.tamu.telepon << endl;
         cout << "Jenis Kamar: " << kamar.tamu.JenisKamar << endl;
     }
+    cout << "\nTekan tombol sembarang untuk kembali ke menu utama...";
+    cin.ignore(); 
+    cin.get();
+    system("cls");
     cout << endl;
 }
 
@@ -108,13 +115,13 @@ void CheckOut(Tamu tamu1[], Kamar kamar1[], int &JumlahTamu)
     cin.ignore();
     cout << "Masukkan nama tamu: ";
     getline(cin, nama);
-
+    system("cls");
     if (NomorKamar < 1 || NomorKamar > MAX_KAMAR || kamar1[NomorKamar - 1].Tersedia)
     {
         cout << "Nomor kamar tidak valid atau kamar belum terisi!" << endl;
         return;
     }
-
+    system("cls");
     if (kamar1[NomorKamar - 1].tamu.nama != nama)
     {
         cout << "Nama tamu tidak cocok dengan data kamar!" << endl;
@@ -145,6 +152,7 @@ void CheckOut(Tamu tamu1[], Kamar kamar1[], int &JumlahTamu)
 
     cout << "Tekan tombol sembarang untuk kembali ke menu utama...";
     cin.get();
+    system("cls");
 }
 
 int main()
@@ -180,6 +188,7 @@ int main()
             DataKamar(kamar1, JumlahKamar);
             break;
         case 3:
+        system("cls");
             CheckOut(tamu1, kamar1, JumlahTamu);
             break;
         case 4:

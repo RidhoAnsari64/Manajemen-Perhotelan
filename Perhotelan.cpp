@@ -147,7 +147,7 @@ void CheckOut(Tamu tamu1[], Kamar kamar1[], int &JumlahTamu)
         }
     }
 
-    cout << "Terimakasih telah menginap di Hotel Citra" << endl;
+    cout << "Terimakasih telah menginap di Hotel RR" << endl;
     cout << "Semoga hari anda menyenangkan\n" << endl;
 
     cout << "Tekan tombol sembarang untuk kembali ke menu utama...";
